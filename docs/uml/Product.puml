@@ -1,45 +1,42 @@
-
-@startuml
-class Product {
-- id : Long
-- name : String
-- price : double
-+ getId() : Long
-+ getName() : String
-+ getPrice() : double
-+ setId(id : Long) : void
-+ setName(name : String) : void
-
 @startuml
 
 class Product {
-  - id: Long
-  - name: String
-  - price: double
+  - id : Long
+  - name : String
+  - price : double
   + Product()
-  + Product(id: Long, name: String, price: double)
-  + getId(): Long
-  + setId(id: Long): void
-  + getName(): String
-  + setName(name: String): void
-  + getPrice(): double
-  + setPrice(price: double): void
+  + Product(id : Long, name : String, price : double)
+  + getId() : Long
+  + getName() : String
+  + getPrice() : double
+  + setId(id : Long) : void
+  + setName(name : String) : void
+  + setPrice(price : double) : void
 }
 
 class ProductService {
-  - products: List<Product>
-  + getAllProducts(): List<Product>
-  + addProduct(product: Product): Product
-  + getProductById(id: Long): Optional<Product>
-  + deleteProduct(id: Long): void
-  + findByName(name: String): List<Product>
+  - products : List<Product>
+  - nextId : Long
+  + getAllProducts() : List<Product>
+  + getProductById(id : Long) : Optional<Product>
+  + addProduct(product : Product) : Product
+  + deleteProduct(id : Long) : void
+  + findByName(name : String) : List<Product>
 }
 
 class ProductController {
-  - productService: ProductService
+  - productService : ProductService
+  + getAllProducts() : List<Product>
+  + getProductById(id : Long) : Product
+  + addProduct(product : Product) : Product
+  + deleteProduct(id : Long) : void
+  + search(name : String) : List<Product>
 }
 
+' dependency: DASHED line, open arrow
 ProductController ..> ProductService : uses
+
+' association: SOLID line
 ProductService --> "0..*" Product : manages
 
 @enduml
