@@ -11,7 +11,7 @@ class Customer {
   + getId(): Long
   + getName(): String
   + getEmail(): String
-  + getAddress(): Address
+  + getAddress(): Addre
 }
 
 class Address {

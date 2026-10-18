@@ -1,5 +1,16 @@
 
 @startuml
+class Product {
+- id : Long
+- name : String
+- price : double
++ getId() : Long
++ getName() : String
++ getPrice() : double
++ setId(id : Long) : void
++ setName(name : String) : void
+
+@startuml
 
 class Product {
   - id: Long
@@ -8,8 +19,27 @@ class Product {
   + Product()
   + Product(id: Long, name: String, price: double)
   + getId(): Long
+  + setId(id: Long): void
   + getName(): String
+  + setName(name: String): void
   + getPrice(): double
+  + setPrice(price: double): void
 }
+
+class ProductService {
+  - products: List<Product>
+  + getAllProducts(): List<Product>
+  + addProduct(product: Product): Product
+  + getProductById(id: Long): Optional<Product>
+  + deleteProduct(id: Long): void
+  + findByName(name: String): List<Product>
+}
+
+class ProductController {
+  - productService: ProductService
+}
+
+ProductController ..> ProductService : uses
+ProductService --> "0..*" Product : manages
 
 @enduml
