@@ -1,5 +1,6 @@
 package uk.ac.westminster.products_api;
-
+// A PhysicalProduct is a Product that needs to be shipped.
+// A ShoppingCart contains products but is not a Product.
 public class PhysicalProduct extends Product {
 
     private double weightKg;
