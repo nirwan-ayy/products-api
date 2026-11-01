@@ -1,4 +1,3 @@
-
 package uk.ac.westminster.products_api;
 
 import org.springframework.stereotype.Service;
@@ -45,6 +44,14 @@ public class ProductService {
         return products.stream()
                 .filter(p -> p.getName().contains(name))
                 .toList();
+    }
+
+    public List<String> getAllSummaries() {
+        List<String> summaries = new ArrayList<>();
+        for (Product p : products) {
+            summaries.add(p.getSummary());
+        }
+        return summaries;
     }
 }
 

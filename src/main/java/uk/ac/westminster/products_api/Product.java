@@ -1,4 +1,3 @@
-
 package uk.ac.westminster.products_api;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -9,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = DigitalProduct.class, name = "digital"),
         @JsonSubTypes.Type(value = PhysicalProduct.class, name = "physical")
 })
-public class Product {
+public abstract class Product {
 
     private Long id;
     private String name;
@@ -23,6 +22,7 @@ public class Product {
         this.name = name;
         this.price = price;
     }
+    public abstract String getSummary();
 
     public Long getId() {
         return id;
@@ -48,3 +48,4 @@ public class Product {
         this.price = price;
     }
 }
+
